@@ -18,7 +18,7 @@ url_base <- "https://rconnectdev.corp.cefas.co.uk/content/144/S?"
 
 ## Retrieve information from the request URL (inc query parameters)
 data <- GET(url_base,query=list(in_year = '2000',
-                                in_sieve = '1'
+                                in_sieve_size_mm = '1'
 ))
 
 ## Retrieve contents of a request and make into a df
