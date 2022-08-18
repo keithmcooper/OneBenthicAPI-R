@@ -24,7 +24,7 @@ data <- GET(url_base,query=list(in_year = '2000',
 ## Retrieve contents of a request and make into a df
 data_text <- content(data, "text")%>%fromJSON
 
-## Explore returened data
+## Explore returned data
 class(data_text)
 str(data_text)
 View(data_text)
@@ -41,7 +41,7 @@ data <- GET(url_base,query=list(in_valid_aphiaid = '130867'))
 ## Retrieve contents of a request and make into a df
 data_text <- content(data, "text")%>%fromJSON
 
-## Explore returened data
+## Explore returned data
 class(data_text)
 str(data_text)
 View(data_text)
@@ -57,7 +57,23 @@ data <- GET(url_base,query=list(in_year = '2000'))
 ## Retrieve contents of a request and make into a df
 data_text <- content(data, "text")%>%fromJSON
 
-## Explore returened data
+## Explore returned data
+class(data_text)
+str(data_text)
+View(data_text)
+#_______________________________________________________________________________
+#### OneBenthicAPI-4 ####
+
+## Url of the api
+url_base <- "https://rconnectdev.corp.cefas.co.uk/content/146/S?"
+
+## Retrieve information from the request URL (inc query parameters). Enter parameter values in list below. Separate items using '&'
+data <- GET(url_base,query=list(in_year = '2014'))
+
+## Retrieve contents of a request and make into a df
+data_text <- content(data, "text")%>%fromJSON
+
+## Explore returned data
 class(data_text)
 str(data_text)
 View(data_text)
