@@ -38,6 +38,7 @@ data <- GET(url_base)
 ## Retrieve contents of a request and make into a df
 data_text <- content(data, "text")%>%fromJSON
 
+## Explore returned data
 head(data_text)
 #_______________________________________________________________________________
 #### OneBenthicAPI-2 ####
