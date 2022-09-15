@@ -13,13 +13,13 @@ library(dplyr)
 #_______________________________________________________________________________
 #### OneBenthicAPI-1 ####
 
+##EITHER use this code if you are returning data where you have only a single value in search parameters 'year' and 'sieve_size_mm'
 ## Url of the api
 url_base <- "https://rconnectdev.corp.cefas.co.uk/content/144/S?"
 
-## Retrieve information from the request URL (inc query parameters)
+## Use this code to retrieve information from the request URL (inc query parameters) for parameters 'year' and 'sieve_size_mm' with only a single value for each
 data <- GET(url_base,query=list(in_year = '2000',
-                                in_sieve_size_mm = '1'
-))
+                                in_sieve_size_mm = '1'))
 
 ## Retrieve contents of a request and make into a df
 data_text <- content(data, "text")%>%fromJSON
@@ -29,6 +29,16 @@ class(data_text)
 str(data_text)
 View(data_text)
 
+#OR
+
+## Use this code if you have multiple parameter. Here, values are added to the url for year = 2000 and 2001 and sieve_size_mm = 1. 
+url_base <- "https://rconnectdev.corp.cefas.co.uk/content/144/S?in_year=2000&in_year=2001&in_sieve_size_mm=1"
+data <- GET(url_base)
+
+## Retrieve contents of a request and make into a df
+data_text <- content(data, "text")%>%fromJSON
+
+head(data_text)
 #_______________________________________________________________________________
 #### OneBenthicAPI-2 ####
 
