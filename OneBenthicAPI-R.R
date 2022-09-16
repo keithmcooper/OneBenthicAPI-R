@@ -31,7 +31,7 @@ View(data_text)
 
 #OR
 
-## Use this code if you have multiple parameter. Here, values are added to the url for year = 2000 and 2001 and sieve_size_mm = 1. 
+## Use this code if you have multiple parameter values. Here, values are added to the url for year = 2000 and 2001 and sieve_size_mm = 1. 
 url_base <- "https://rconnectdev.corp.cefas.co.uk/content/144/S?in_year=2000&in_year=2001&in_sieve_size_mm=1"
 data <- GET(url_base)
 
@@ -43,6 +43,7 @@ head(data_text)
 #_______________________________________________________________________________
 #### OneBenthicAPI-2 ####
 
+##EITHER use this code if you are returning data where you have only a single value in the search parameters 'valid_aphiaid'.
 ## Url of the api
 url_base <- "https://rconnectdev.corp.cefas.co.uk/content/145/S?"
 
@@ -56,6 +57,18 @@ data_text <- content(data, "text")%>%fromJSON
 class(data_text)
 str(data_text)
 View(data_text)
+
+#OR
+
+## Use this code if you have multiple values. Here, values are added to the url for valid_aphiaid = 130867 (Sabellaria spinulosa) and valid_aphiaid = 152367 (Lagis koreni)
+url_base <- "https://rconnectdev.corp.cefas.co.uk/content/145/S?in_valid_aphiaid=130867&in_valid_aphiaid=152367"
+data <- GET(url_base)
+
+## Retrieve contents of a request and make into a df
+data_text <- content(data, "text")%>%fromJSON
+
+## Explore returned data
+head(data_text)
 #_______________________________________________________________________________
 #### OneBenthicAPI-3 ####
 
