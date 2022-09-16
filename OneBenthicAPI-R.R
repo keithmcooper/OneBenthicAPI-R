@@ -72,6 +72,7 @@ head(data_text)
 #_______________________________________________________________________________
 #### OneBenthicAPI-3 ####
 
+##EITHER use this code if you are returning data where you have only a single value in the search parameter 'year'.
 ## Url of the api
 url_base <- "https://rconnectdev.corp.cefas.co.uk/content/146/S?"
 
@@ -85,6 +86,18 @@ data_text <- content(data, "text")%>%fromJSON
 class(data_text)
 str(data_text)
 View(data_text)
+
+#OR
+
+## Use this code if you have multiple values. Here, values are added to the url for year = 2000 and 2001.
+url_base <- "https://rconnectdev.corp.cefas.co.uk/content/146/S?in_year=2000&in_year=2001"
+data <- GET(url_base)
+
+## Retrieve contents of a request and make into a df
+data_text <- content(data, "text")%>%fromJSON
+
+## Explore returned data
+head(data_text)
 #_______________________________________________________________________________
 #### OneBenthicAPI-4 ####
 
