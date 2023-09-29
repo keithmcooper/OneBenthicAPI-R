@@ -11,6 +11,89 @@ require("httr")
 require("jsonlite")
 library(dplyr)
 #_______________________________________________________________________________
+#### OneBenthicAPI-1 ####
+
+## Url of the api
+url_base <- "https://rconnectdev.corp.cefas.co.uk/content/2ae943a1-88fc-4fce-8f84-bd49601a531f/API-1?"#dev server
+
+## Retrieve information from the request URL (inc query parameters)
+data <- GET(url_base,query=list(in_year = '2000',
+                                in_sieve_size_mm = '1'
+))
+
+## Retrieve contents of a request and make into a df
+data_text <- content(data, "text")%>%fromJSON
+
+## Explore returened data
+class(data_text)
+str(data_text)
+View(data_text)
+
+#_______________________________________________________________________________
+#### OneBenthicAPI-2 ####
+
+## Url of the api
+url_base <- "https://rconnectdev.corp.cefas.co.uk/content/aa62c6b2-ae39-4d9e-bd7a-1ed977fc3d6f/API-2?"#dev server
+
+## Retrieve information from the request URL (inc query parameters)
+data <- GET(url_base,query=list(in_valid_aphiaid = '130867'))
+
+## Retrieve contents of a request and make into a df
+data_text <- content(data, "text")%>%fromJSON
+
+## Explore returened data
+class(data_text)
+str(data_text)
+View(data_text)
+#_______________________________________________________________________________
+#### OneBenthicAPI-3 ####
+
+## Url of the api
+url_base <- "https://rconnectdev.corp.cefas.co.uk/content/62351b35-4c65-4bd1-9b8b-f0fe398f0ec3/API-3?"#dev server
+
+## Retrieve information from the request URL (inc query parameters)
+data <- GET(url_base,query=list(in_year = '2000'))
+
+## Retrieve contents of a request and make into a df
+data_text <- content(data, "text")%>%fromJSON
+
+## Explore returened data
+class(data_text)
+str(data_text)
+View(data_text)
+#_______________________________________________________________________________
+#### OneBenthicAPI-4 ####
+
+## Url of the api
+url_base <- "https://rconnectdev.corp.cefas.co.uk/content/af18d182-9532-462e-9690-ae2a2919227f/API-4?"#dev server
+
+## Retrieve information from the request URL (inc query parameters)
+data <- GET(url_base,query=list(in_year = '2014'))
+
+## Retrieve contents of a request and make into a df
+data_text <- content(data, "text")%>%fromJSON
+
+## Explore returened data
+class(data_text)
+str(data_text)
+View(data_text)
+#_______________________________________________________________________________
+#### OneBenthicAPI-5 ####
+
+## Url of the api
+url_base <- "https://rconnectdev.corp.cefas.co.uk/content/c553567e-bfe7-4c7a-8c43-1185ec2218ac/API-5?"#dev server
+
+## Retrieve information from the request URL (inc query parameters)
+data <- GET(url_base,query=list(in_survey_name = 'South Coast Regional Seabed Monitoring Programme 2022'))
+
+## Retrieve contents of a request and make into a df
+data_text <- content(data, "text")%>%fromJSON
+
+## Explore returened data
+class(data_text)
+str(data_text)
+View(data_text)
+#_______________________________________________________________________________
 #### OneBenthicAPI-6 ####
 
 ##EITHER use this code if you are returning data where you have only a single value in the search parameter 'year'.
