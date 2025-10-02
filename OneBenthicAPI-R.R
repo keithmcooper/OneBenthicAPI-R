@@ -140,3 +140,33 @@ class(data_text)
 str(data_text)
 View(data_text)
 #_______________________________________________________________________________
+#### OneBenthicAPI-9 Layers ####
+
+# Load libraries
+library(httr)
+library(terra)
+
+# API endpoint and layer name
+url <- "https://rconnect.cefas.co.uk/onebenthic_api_9/download_raster"
+layer_name <- "bolam_et_al_2025_assemblages_model"
+
+# Request raster from API
+res <- GET(url, query = list(layer = layer_name))
+
+if (status_code(res) == 200) {
+  # Save raster to a temporary file
+  tmpfile <- tempfile(fileext = ".tif")
+  writeBin(content(res, "raw"), tmpfile)
+  
+  # Load raster into terra
+  r <- rast(tmpfile)
+  
+  # Plot raster
+  plot(r, main = paste("Raster:", layer_name))
+  
+} else {
+  message("Download failed. Status code: ", status_code(res))
+  cat("Server response:\n")
+  cat(content(res, "text"))
+}
+#_______________________________________________________________________________
