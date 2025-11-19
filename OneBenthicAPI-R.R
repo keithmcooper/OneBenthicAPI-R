@@ -7,14 +7,14 @@
 #install.packages("dplyr")
 
 ## Load packages
-require("httr")
-require("jsonlite")
+library(httr)
+library(jsonlite)
 library(dplyr)
 #_______________________________________________________________________________
 #### OneBenthicAPI-1 Community data ####
 
 ## Url of the api
-url_base <- "https://rconnect.cefas.co.uk/onebenthic_api_1/API-1?"#prod server
+url_base <- "https://rconnect.cefas.co.uk/onebenthic_api_1/API-1_with_filters?"#prod server
 
 ## Retrieve information from the request URL (inc query parameters)
 data <- GET(url_base,query=list(in_year = '2000',
