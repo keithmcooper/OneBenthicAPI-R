@@ -148,7 +148,7 @@ library(terra)
 
 # API endpoint and layer name
 url <- "https://rconnect.cefas.co.uk/onebenthic_api_9/download_raster"
-layer_name <- "bolam_et_al_2025_assemblages_model"
+layer_name <- "bolam_et_al_2026_assemblages_model"
 
 # Request raster from API
 res <- GET(url, query = list(layer = layer_name))
