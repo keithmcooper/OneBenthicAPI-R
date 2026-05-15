@@ -140,6 +140,60 @@ class(data_text)
 str(data_text)
 View(data_text)
 #_______________________________________________________________________________
+#### OneBenthicAPI-8 Benthic Traits from the OneBenthic Grab/Core database ####
+
+## Traits sourced from Clare et al. (2022) - see https://rdcu.be/cPF8A
+
+library(httr)
+library(jsonlite)
+library(dplyr)
+
+## Base URL
+base <- "https://rconnect.cefas.co.uk/onebenthic_api_8"
+
+## Helper: call an endpoint and return a data frame
+ob_get <- function(endpoint, ...) {
+  
+  params <- list(...)
+  
+  response <- GET(
+    url   = paste0(base, endpoint),
+    query = if (length(params) > 0) params else NULL
+  )
+  
+  stop_for_status(response)
+  
+  raw <- content(response, "text", encoding = "UTF-8")
+  
+  if (startsWith(trimws(raw), "<")) {
+    stop("API returned HTML instead of JSON — check the endpoint URL.")
+  }
+  
+  jsonlite::fromJSON(raw, flatten = TRUE)
+}
+
+## Fetch all traits
+all_traits <- ob_get("/API-8_no_filters")
+
+## Filter by taxon
+    
+## Partial match, case-insensitive (e.g. "Abra" returns all Abra species)
+get_traits_by_taxon <- function(taxon_name) {
+  all_traits %>%
+    filter(grepl(taxon_name, scientificname, ignore.case = TRUE))
+}
+
+## Single taxon
+abra <- get_traits_by_taxon("Abra alba")
+
+## Partial match — all Abra species
+abra_spp <- get_traits_by_taxon("Abra")
+
+## Multiple taxa
+taxa_of_interest <- c("Abra alba", "Nephrops norvegicus", "Crangon crangon")
+multi <- all_traits %>%
+  filter(scientificname %in% taxa_of_interest)
+#_______________________________________________________________________________
 #### OneBenthicAPI-9 Layers ####
 
 # Load libraries
